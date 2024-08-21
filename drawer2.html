@@ -76,23 +76,23 @@
         function typeWriter(text, callback, i = 0) {
             if (i < text.length) {
                 storyText.textContent += text.charAt(i);
-                setTimeout(() => typeWriter(text, callback, i + 1), 50); // Adjust the typing speed by changing the timeout value
+                setTimeout(() => typeWriter(text, callback, i + 1), 50); 
             } else if (callback) {
-                callback(); // Show choices after the typing effect is done
+                callback(); 
             }
         }
 
         function makeChoice(choice) {
-            storyText.textContent = ""; // Clear the previous text
+            storyText.textContent = ""; 
             if (choice === 1) {
                 window.location.href = "index.html";
             } 
         }
 
-        // Start the typing effect and show choices after it's done
+        
         window.onload = () => {
             typeWriter("You need another key to open it!", () => {
-                choices.style.display = 'flex'; // Show choices after the dialogue is finished
+                choices.style.display = 'flex';
             });
         };
     </script>
