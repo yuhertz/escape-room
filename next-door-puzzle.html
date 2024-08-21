@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSL Escape Room Game - Number Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-vector/realistic-safe-lock-metal-element-textured-black-plastic-background-stainless-steel-wheel-vector-icon-design-element-metal-keypad-buttons-with-number-safety-privacy-protection-concept_167184-393.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        #puzzle-container {
+            position: relative;
+            width: 400px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        #puzzle-sequence {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        #user-input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="puzzle-container">
+        <h1>Solve this Number Sequence</h1>
+        <div id="puzzle-sequence">2, 4, 8, 16, ?</div>
+        <input type="text" id="user-input" placeholder="Enter the missing number">
+        <button onclick="checkAnswer()">Check Answer</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const correctAnswer = "32";
+
+        function checkAnswer() {
+            const userInput = document.getElementById("user-input").value.toLowerCase();
+            const resultDiv = document.getElementById("result");
+
+            if (userInput === correctAnswer) {
+                resultDiv.innerText = "Correct! Redirecting...";
+                setTimeout(() => {
+                    window.location.href = "escaped.html";  // Redirect to the next page
+                }, 2000);  // Redirect after 2 seconds
+            } else {
+                resultDiv.innerText = "Try again!";
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>

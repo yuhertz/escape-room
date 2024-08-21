@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSL Escape Room Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://t3.ftcdn.net/jpg/01/92/61/24/360_F_192612470_9ePWHo9gwS33VrqfzIc4S3GtF4Lyiesi.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .game-container {
+            position: relative;
+            width: 400px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .chatbox {
+            position: relative;
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+            line-height: 1.5;
+            font-size: 16px;
+            color: #333;
+        }
+        .choices {
+            border-top: 1px solid #ccc;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            display: none; /* Hide choices initially */
+        }
+        .choices button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .choices button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <div class="chatbox" id="chatbox">
+            <p id="story-text"></p>
+        </div>
+        <div class="choices" id="choices">
+            <button onclick="makeChoice(1)">Yellow Door</button>
+            <button onclick="makeChoice(2)">Blue Door</button>
+            <button onclick="makeChoice(3)">Return Back</button>
+        </div>
+    </div>
+
+    <script>
+        const storyText = document.getElementById("story-text");
+        const choices = document.getElementById("choices");
+
+        function typeWriter(text, callback, i = 0) {
+            if (i < text.length) {
+                storyText.textContent += text.charAt(i);
+                setTimeout(() => typeWriter(text, callback, i + 1), 50); // Adjust the typing speed by changing the timeout value
+            } else if (callback) {
+                callback(); // Show choices after the typing effect is done
+            }
+        }
+
+        function makeChoice(choice) {
+            storyText.textContent = ""; // Clear the previous text
+            if (choice === 1) {
+                window.location.href = "yellow-door.html";
+            } else if (choice === 2) {
+                window.location.href = "blue-door.html";
+            } 
+        }
+
+        // Start the typing effect and show choices after it's done
+        window.onload = () => {
+            typeWriter("Welcome to escape room 2. There are two doors, pick one.", () => {
+                choices.style.display = 'flex'; // Show choices after the dialogue is finished
+            });
+        };
+    </script>
+</body>
+</html>

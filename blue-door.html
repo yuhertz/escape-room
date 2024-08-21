@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSL Escape Room Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-vector/realistic-safe-lock-metal-element-textured-black-plastic-background-stainless-steel-wheel-vector-icon-design-element-metal-keypad-buttons-with-number-safety-privacy-protection-concept_167184-393.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        #puzzle-container {
+            position: relative;
+            width: 400px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        #hint {
+            margin-top: 20px;
+            display: none;
+            color: red;
+        }
+        #guessInput {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        ul {
+            text-align: left;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="puzzle-container">
+        <h1>3-Digit Code Guessing Game</h1>
+        <p>Guess the 3-digit code:</p>
+        <form id="guessForm">
+            <input type="text" id="guessInput" maxlength="3" placeholder="Enter 3-digit code">
+            <button type="submit">Submit</button>
+        </form>
+        <div id="hint"></div>
+
+        <h2><u>HINTS:</u></h2>
+        <ul>
+            <li>234 - Two numbers are correct, one is well placed and the other wrongly placed</li>
+            <li>567 - Nothing is correct</li>
+            <li>564 - One number is correct and well placed</li>
+            <li>401 - Two numbers are correct but wrongly placed</li>
+            <li>124 - Two numbers are correct, one is well placed and the other wrongly placed</li>
+        </ul>
+    </div>
+
+    <script>
+        const code = "314";
+        const guessForm = document.getElementById('guessForm');
+        const guessInput = document.getElementById('guessInput');
+        const hint = document.getElementById('hint');
+
+        guessForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const guess = guessInput.value;
+
+            if (guess === code) {
+                window.location.href = "next-door.html";
+            } else {
+                hint.innerHTML = 'Incorrect';
+                hint.classList.add('incorrect');
+                hint.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
