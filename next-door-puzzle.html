@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSL Escape Room Game - Number Puzzle</title>
+    <title>PSL Escape Room Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,18 +29,19 @@
             padding: 20px;
             text-align: center;
         }
-        #puzzle-sequence {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
+        #result {
+            margin-top: 20px;
+            display: none;
+            color: red;
         }
-        #user-input {
+        #guessInput {
             width: calc(100% - 22px);
             padding: 10px;
             font-size: 16px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            text-align: center;
         }
         button {
             padding: 10px 20px;
@@ -55,40 +56,47 @@
         button:hover {
             background-color: #0056b3;
         }
-        #result {
-            margin-top: 20px;
-            font-size: 18px;
-            color: green;
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        img {
+            margin-bottom: 20px;
+            width: 100px;
+            height: 100px;
         }
     </style>
 </head>
 <body>
 
     <div id="puzzle-container">
-        <h1>Solve this Number Sequence</h1>
-        <div id="puzzle-sequence">2, 4, 8, 16, ?</div>
-        <input type="text" id="user-input" placeholder="Enter the missing number">
-        <button onclick="checkAnswer()">Check Answer</button>
+        <h1>Math Puzzle</h1>
+        <img src="https://d2vlcm61l7u1fs.cloudfront.net/media%2F45b%2F45b47c35-a7e3-4cee-b00b-03d97b42efc0%2FphpEnSZZD.png" alt="Puzzle Icon">
+        <p>Find this defined integral: (in decimal)<br><strong></strong></p>
+        <form id="guessForm">
+            <input type="text" id="guessInput" placeholder="Enter your answer">
+            <button type="submit">Submit</button>
+        </form>
         <div id="result"></div>
     </div>
 
     <script>
-        const correctAnswer = "32";
+        const correctAnswer = "0.5";
+        const guessForm = document.getElementById('guessForm');
+        const guessInput = document.getElementById('guessInput');
+        const result = document.getElementById('result');
 
-        function checkAnswer() {
-            const userInput = document.getElementById("user-input").value.toLowerCase();
-            const resultDiv = document.getElementById("result");
+        guessForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const guess = guessInput.value.trim();
 
-            if (userInput === correctAnswer) {
-                resultDiv.innerText = "Correct! Redirecting...";
-                setTimeout(() => {
-                    window.location.href = "escaped.html";  
-                }, 2000);
+            if (guess === correctAnswer) {
+                window.location.href = 'escaped.html';
             } else {
-                resultDiv.innerText = "Try again!";
-                resultDiv.style.color = "red";
+                result.innerText = 'Incorrect. Try again!';
+                result.style.display = 'block';
             }
-        }
+        });
     </script>
 
 </body>
