@@ -71,8 +71,8 @@
 
     <div id="puzzle-container">
         <h1>Math Puzzle</h1>
-        <img src="https://d2vlcm61l7u1fs.cloudfront.net/media%2F45b%2F45b47c35-a7e3-4cee-b00b-03d97b42efc0%2FphpEnSZZD.png" alt="Puzzle Icon">
-        <p>Find this defined integral: (in decimal)<br><strong></strong></p>
+        <img src="https://cdn1.byjus.com/wp-content/uploads/2020/10/Pythagoras-Theorem-5.png" alt="Puzzle Icon">
+        <p>Find b<br><strong></strong></p>
         <form id="guessForm">
             <input type="text" id="guessInput" placeholder="Enter your answer">
             <button type="submit">Submit</button>
@@ -81,7 +81,7 @@
     </div>
 
     <script>
-        const correctAnswer = "0.5";
+        const correctAnswer = "8";
         const guessForm = document.getElementById('guessForm');
         const guessInput = document.getElementById('guessInput');
         const result = document.getElementById('result');
@@ -91,7 +91,7 @@
             const guess = guessInput.value.trim();
 
             if (guess === correctAnswer) {
-                window.location.href = 'escaped.html';
+                window.location.href = 'room-3.html'; // Redirect to success.html
             } else {
                 result.innerText = 'Incorrect. Try again!';
                 result.style.display = 'block';
