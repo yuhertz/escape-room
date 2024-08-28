@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://media.istockphoto.com/id/499509690/photo/abstract-blur-background-english-multiple-choice-test.jpg?s=612x612&w=0&k=20&c=QGgDDUHH7lkzTKkTB4laBFj1_1KAgooqsqY3ppEIjHg=');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .game-container {
+            position: relative;
+            width: 360px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+        .sudoku-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 30px);
+            grid-template-rows: repeat(9, 30px);
+            gap: 0;
+            margin: 0 auto;
+        }
+        .sudoku-grid input {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        .pre-filled {
+            background-color: #e0e0e0;
+            font-weight: bold;
+        }
+        /* Thicker borders to outline 3x3 subgrids */
+        .sudoku-grid input:nth-child(3n+1) {
+            border-left: 2px solid black;
+        }
+        .sudoku-grid input:nth-child(9n+1) {
+            border-left: none; /* Prevent double border */
+        }
+        .sudoku-grid input:nth-child(-n+9) {
+            border-top: 2px solid black;
+        }
+        .sudoku-grid input:nth-child(3n+1):nth-child(-n+9) {
+            border-top: 2px solid black;
+        }
+        .sudoku-grid input:nth-last-child(-n+9) {
+            border-bottom: 2px solid black;
+        }
+        .sudoku-grid input:nth-child(n+19):nth-child(-n+27),
+        .sudoku-grid input:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 2px solid black;
+        }
+        .sudoku-grid input:nth-child(3n) {
+            border-right: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h2>Solve the Sudoku Puzzle</h2>
+    <div id="sudoku-container" class="sudoku-grid">
+        <!-- 1 column -->
+        <input type="text" maxlength="1" class="pre-filled" value="5">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="9">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="7">
+
+
+        <!--2 column-->
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="8">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="5">
+        <input type="text" maxlength="1" class="pre-filled" value="2">
+        <input type="text" maxlength="1">
+
+
+        <!--3 column-->
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="3">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="8">
+        <input type="text" maxlength="1" class="pre-filled" value="4">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="1">
+
+
+        <!--`4 column-->
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="9">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="7">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="2">
+
+
+        <!--5 column-->
+        <input type="text" maxlength="1" class="pre-filled" value="4">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="5">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="3">
+        <input type="text" maxlength="1" class="pre-filled" value="9">
+        <input type="text" maxlength="1">
+
+
+        <!--6 column-->
+        <input type="text" maxlength="1" class="pre-filled" value="8">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="2">
+        <input type="text" maxlength="1" class="pre-filled" value="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="4">
+
+
+
+        <!--7 column-->
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="3">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="2">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="5">
+
+
+
+        <!--8 column-->
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="4">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="7">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        
+
+
+
+        <!--9 column-->
+        <input type="text" maxlength="1" class="pre-filled" value="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="7">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="9">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1">
+        <input type="text" maxlength="1" class="pre-filled" value="8">
+        <input type="text" maxlength="1">
+        
+
+
+        
+    </div>
+    <button onclick="checkSudoku()">Check Solution</button>
+    <div id="result"></div>
+</div>
+
+<script>
+    function checkSudoku() {
+        const solution = [
+            [5, 1, 9, 6, 2, 3, 8, 4, 7],
+            [6, 8, 4, 9, 1, 7, 5, 2, 3],
+            [7, 2, 3, 5, 8, 4, 9, 6, 1],
+            [3, 9, 6, 7, 4, 8, 1, 5, 2],
+            [4, 7, 1, 2, 5, 6, 3, 9, 8],
+            [8, 5, 2, 1, 3, 9, 6, 7, 4],
+            [9, 6, 8, 3, 7, 2, 4, 1, 5],
+            [2, 4, 5, 8, 6, 1, 7, 3, 9],
+            [1, 3, 7, 4, 9, 5, 2, 8, 6]
+        ];
+
+        let isCorrect = true;
+        const cells = document.querySelectorAll('.sudoku-grid input');
+
+        cells.forEach((cell, index) => {
+            const row = Math.floor(index / 9);
+            const col = index % 9;
+
+            if (cell.value != solution[row][col]) {
+                isCorrect = false;
+            }
+        });
+
+        const result = document.getElementById('result');
+        result.textContent = isCorrect ? window.location.href = "escaped.html" : 'Some numbers are incorrect. Please try again.';
+    }
+</script>
+
+</body>
+</html>
