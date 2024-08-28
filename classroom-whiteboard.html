@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSL Escape Room Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-vector/empty-school-classroom-with-green-chalkboard_38747-1238.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        #puzzle-container {
+            position: relative;
+            width: 400px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        #result {
+            margin-top: 20px;
+            display: none;
+            color: red;
+        }
+        #guessInput {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        img {
+            margin-bottom: 20px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="puzzle-container">
+        <h1>Math Puzzle</h1>
+        <img src="https://d2vlcm61l7u1fs.cloudfront.net/media%2F45b%2F45b47c35-a7e3-4cee-b00b-03d97b42efc0%2FphpEnSZZD.png" alt="Puzzle Icon">
+        <p>Find this defined integral: (in decimal)<br><strong></strong></p>
+        <form id="guessForm">
+            <input type="text" id="guessInput" placeholder="Enter your answer">
+            <button type="submit">Submit</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const correctAnswer = "0.5";
+        const guessForm = document.getElementById('guessForm');
+        const guessInput = document.getElementById('guessInput');
+        const result = document.getElementById('result');
+
+        guessForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const guess = guessInput.value.trim();
+
+            if (guess === correctAnswer) {
+                window.location.href = 'escaped.html'; 
+            } else {
+                result.innerText = 'Incorrect. Try again!';
+                result.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
